@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn tagging tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>LinkedIn tagging tool</h1>
+        </div>
+        
+        <div class="search-container">
+            <form id="utm-form" class="utm-form">
+                <div class="input-group">
+                    <label for="base-url">URL</label>
+                    <input 
+                        type="url" 
+                        id="base-url" 
+                        name="base-url" 
+                        placeholder="https://example.com/article"
+                        required
+                        autofocus
+                    >
+                </div>
+                
+                <div class="radio-group">
+                    <label class="radio-label">Opslagstype:</label>
+                    <div class="radio-options">
+                        <label class="radio-option">
+                            <input 
+                                type="radio" 
+                                name="post-type" 
+                                value="redaktionelt" 
+                                id="post-type-redaktionelt"
+                                checked
+                            >
+                            <span>Redaktionelt</span>
+                        </label>
+                        <label class="radio-option">
+                            <input 
+                                type="radio" 
+                                name="post-type" 
+                                value="personligt" 
+                                id="post-type-personligt"
+                            >
+                            <span>Personligt</span>
+                        </label>
+                        <label class="radio-option">
+                            <input 
+                                type="radio" 
+                                name="post-type" 
+                                value="linkedin-nyhedsbrev" 
+                                id="post-type-nyhedsbrev"
+                            >
+                            <span>LinkedIn-nyhedsbrev</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" id="reset-btn">Nulstil</button>
+                </div>
+            </form>
+        </div>
+        
+        <div id="result-container" class="result-container">
+            <div class="result-box">
+                <label for="result-url">Din taggede URL:</label>
+                <div class="url-display">
+                    <input 
+                        type="text" 
+                        id="result-url" 
+                        readonly
+                        class="result-url"
+                        placeholder="Indtast URL øverst for at generere taggede URL"
+                    >
+                    <button type="button" class="btn-copy" id="copy-btn" title="Kopier URL" disabled>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="copy-message" class="copy-message hidden">✓ Kopieret!</div>
+            </div>
+        </div>
+        
+        <div class="info-text">
+            <p>Indtast URL'en for at generere en taggede URL</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+
