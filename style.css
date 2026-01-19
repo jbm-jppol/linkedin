@@ -263,6 +263,47 @@ body {
     font-size: 13px;
 }
 
+.explanation-section {
+    margin-top: 40px;
+    padding: 24px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #dadce0;
+}
+
+.explanation-section h2 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #202124;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.explanation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.explanation-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.explanation-item strong {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4285f4;
+}
+
+.explanation-item p {
+    font-size: 13px;
+    color: #5f6368;
+    line-height: 1.6;
+    margin: 0;
+}
+
 @media (max-width: 600px) {
     .container {
         margin-top: 5vh;
@@ -278,6 +319,23 @@ body {
     
     .btn {
         width: 100%;
+    }
+    
+    .explanation-section {
+        padding: 20px;
+        margin-top: 30px;
+    }
+    
+    .explanation-section h2 {
+        font-size: 16px;
+    }
+    
+    .explanation-item strong {
+        font-size: 13px;
+    }
+    
+    .explanation-item p {
+        font-size: 12px;
     }
 }
 
