@@ -279,6 +279,52 @@ body {
     text-align: center;
 }
 
+.explanation-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.explanation-toggle:hover {
+    color: #4285f4;
+}
+
+.explanation-toggle span {
+    flex: 1;
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+    color: #5f6368;
+    flex-shrink: 0;
+}
+
+.explanation-toggle:hover .toggle-icon {
+    color: #4285f4;
+}
+
+.explanation-list.collapsed {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    margin-top: 0;
+}
+
+.explanation-list:not(.collapsed) {
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 20px;
+}
+
+.explanation-list.expanded .toggle-icon {
+    transform: rotate(180deg);
+}
+
 .explanation-list {
     display: flex;
     flex-direction: column;

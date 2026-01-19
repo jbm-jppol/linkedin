@@ -130,5 +130,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize - disable copy button on load
     copyBtn.disabled = true;
+    
+    // Expandable explanation section
+    const explanationToggle = document.getElementById('explanation-toggle');
+    const explanationContent = document.getElementById('explanation-content');
+    
+    explanationToggle.addEventListener('click', function() {
+        explanationContent.classList.toggle('collapsed');
+        explanationToggle.classList.toggle('expanded');
+    });
 });
 
