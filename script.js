@@ -139,5 +139,16 @@ document.addEventListener('DOMContentLoaded', function() {
         explanationContent.classList.toggle('collapsed');
         explanationToggle.classList.toggle('expanded');
     });
+    
+    // Language selector buttons
+    const langButtons = document.querySelectorAll('.lang-btn');
+    langButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            langButtons.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+        });
+    });
 });
 
