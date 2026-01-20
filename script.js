@@ -140,14 +140,51 @@ document.addEventListener('DOMContentLoaded', function() {
         explanationToggle.classList.toggle('expanded');
     });
     
+    // Cookie functions
+    function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+    
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+    
     // Language selector buttons
     const langButtons = document.querySelectorAll('.lang-btn');
+    
+    // Load saved language from cookie on page load
+    const savedLang = getCookie('selectedLanguage');
+    if (savedLang) {
+        langButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-lang') === savedLang) {
+                btn.classList.add('active');
+            }
+        });
+    }
+    
+    // Handle language button clicks
     langButtons.forEach(btn => {
         btn.addEventListener('click', function() {
+            const selectedLang = this.getAttribute('data-lang');
+            
             // Remove active class from all buttons
             langButtons.forEach(b => b.classList.remove('active'));
             // Add active class to clicked button
             this.classList.add('active');
+            
+            // Save selected language to cookie (expires in 365 days)
+            setCookie('selectedLanguage', selectedLang, 365);
         });
     });
 });
