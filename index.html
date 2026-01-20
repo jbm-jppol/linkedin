@@ -23,7 +23,7 @@
         <div class="search-container">
             <form id="utm-form" class="utm-form">
                 <div class="input-group">
-                    <label for="base-url">URL</label>
+                    <label for="base-url" data-i18n="url_label">URL</label>
                     <input 
                         type="url" 
                         id="base-url" 
@@ -35,7 +35,7 @@
                 </div>
                 
                 <div class="radio-group">
-                    <label class="radio-label">Opslagstype:</label>
+                    <label class="radio-label" data-i18n="post_type_label">Opslagstype:</label>
                     <div class="radio-options">
                         <label class="radio-option">
                             <input 
@@ -45,7 +45,7 @@
                                 id="post-type-redaktionelt"
                                 checked
                             >
-                            <span>Redaktionelt opslag</span>
+                            <span data-i18n="post_type_editorial">Redaktionelt opslag</span>
                         </label>
                         <label class="radio-option">
                             <input 
@@ -54,7 +54,7 @@
                                 value="personligt" 
                                 id="post-type-personligt"
                             >
-                            <span>Personligt opslag</span>
+                            <span data-i18n="post_type_personal">Personligt opslag</span>
                         </label>
                         <label class="radio-option">
                             <input 
@@ -63,62 +63,63 @@
                                 value="linkedin-nyhedsbrev" 
                                 id="post-type-nyhedsbrev"
                             >
-                            <span>LinkedIn-nyhedsbrev</span>
+                            <span data-i18n="post_type_newsletter">LinkedIn-nyhedsbrev</span>
                         </label>
                     </div>
                 </div>
                 
                 <div class="button-group">
-                    <button type="button" class="btn btn-secondary" id="reset-btn">Nulstil</button>
+                    <button type="button" class="btn btn-secondary" id="reset-btn" data-i18n="reset_button">Nulstil</button>
                 </div>
             </form>
         </div>
         
         <div id="result-container" class="result-container">
             <div class="result-box">
-                <label for="result-url">Din taggede URL:</label>
+                <label for="result-url" data-i18n="result_label">Din taggede URL:</label>
                 <div class="url-display">
                     <input 
                         type="text" 
                         id="result-url" 
                         readonly
                         class="result-url"
+                        data-i18n-placeholder="result_placeholder"
                         placeholder="Indtast URL øverst for at generere taggede URL"
                     >
-                    <button type="button" class="btn-copy" id="copy-btn" title="Kopier URL" disabled>
+                    <button type="button" class="btn-copy" id="copy-btn" data-i18n-title="copy_button_title" title="Kopier URL" disabled>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                         </svg>
                     </button>
                 </div>
-                <div id="copy-message" class="copy-message hidden">✓ Kopieret!</div>
+                <div id="copy-message" class="copy-message hidden" data-i18n="copy_message">✓ Kopieret!</div>
             </div>
         </div>
         
         <div class="info-text">
-            <p>Indtast URL'en for at generere en taggede URL</p>
+            <p data-i18n="info_text">Indtast URL'en for at generere en taggede URL</p>
         </div>
         
         <div class="explanation-section">
             <h2 class="explanation-toggle" id="explanation-toggle">
-                <span>Forklaring af opslagstyper</span>
+                <span data-i18n="explanation_title">Forklaring af opslagstyper</span>
                 <svg class="toggle-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
             </h2>
             <div class="explanation-list collapsed" id="explanation-content">
                 <div class="explanation-item">
-                    <strong>Redaktionelt opslag:</strong>
-                    <p>Brug denne type til almindelige redaktionelle opslag fra mediet. Dette er den standardtype, du skal bruge, når du deler artikler eller indhold fra din redaktion på LinkedIn.</p>
+                    <strong data-i18n="explanation_editorial_title">Redaktionelt opslag:</strong>
+                    <p data-i18n="explanation_editorial_text">Brug denne type til almindelige redaktionelle opslag fra mediet. Dette er den standardtype, du skal bruge, når du deler artikler eller indhold fra din redaktion på LinkedIn.</p>
                 </div>
                 <div class="explanation-item">
-                    <strong>Personligt opslag:</strong>
-                    <p>Vælg denne type, når du deler indhold fra dit personlige LinkedIn-opslag. Dette bruges typisk, når du som journalist deler artikler eller indhold i dit eget navn, uden for det redaktionelle format.</p>
+                    <strong data-i18n="explanation_personal_title">Personligt opslag:</strong>
+                    <p data-i18n="explanation_personal_text">Vælg denne type, når du deler indhold fra dit personlige LinkedIn-opslag. Dette bruges typisk, når du som journalist deler artikler eller indhold i dit eget navn, uden for det redaktionelle format.</p>
                 </div>
                 <div class="explanation-item">
-                    <strong>LinkedIn-nyhedsbrev:</strong>
-                    <p>Brug denne type, når du deler links fra LinkedIn's nyhedsbrev-funktion. Dette er specifikt til indhold, der er delt gennem LinkedIn's nyhedsbrev-system.</p>
+                    <strong data-i18n="explanation_newsletter_title">LinkedIn-nyhedsbrev:</strong>
+                    <p data-i18n="explanation_newsletter_text">Brug denne type, når du deler links fra LinkedIn's nyhedsbrev-funktion. Dette er specifikt til indhold, der er delt gennem LinkedIn's nyhedsbrev-system.</p>
                 </div>
             </div>
         </div>
