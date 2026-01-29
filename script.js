@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const baseUrlInput = document.getElementById('base-url');
     const resultContainer = document.getElementById('result-container');
     const resultUrl = document.getElementById('result-url');
-    const copyMessage = document.getElementById('copy-message');
     
     // Translations object
     const translations = {
@@ -243,7 +242,6 @@ document.addEventListener('DOMContentLoaded', function() {
         resultUrl.value = '';
         copyBtn.disabled = true;
         copyBtn.classList.remove('success');
-        copyMessage.classList.add('hidden');
         // Restore original icon if it was changed
         const svg = copyBtn.querySelector('svg');
         if (svg) {
@@ -279,10 +277,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 svg.innerHTML = '<path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
             }
             
-            // Update and show toast message
-            copyMessage.textContent = successMessage;
-            copyMessage.classList.remove('hidden');
-            
             // Announce to screen readers
             const ariaLive = document.getElementById('copy-aria-live');
             if (ariaLive) {
@@ -296,7 +290,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (svg) {
                     svg.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>';
                 }
-                copyMessage.classList.add('hidden');
                 if (ariaLive) {
                     ariaLive.textContent = '';
                 }
