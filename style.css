@@ -282,6 +282,17 @@ body {
     border-color: #dadce0;
 }
 
+.btn-copy.success {
+    background-color: #34a853;
+    border-color: #34a853;
+    color: #ffffff;
+}
+
+.btn-copy.success:hover {
+    background-color: #2d8f47;
+    border-color: #2d8f47;
+}
+
 .copy-message {
     font-size: 14px;
     color: #34a853;
@@ -291,6 +302,41 @@ body {
 
 .copy-message.hidden {
     display: none;
+}
+
+.copy-message {
+    animation: fadeInOut 1.8s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    15% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    85% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 .info-text {

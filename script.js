@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             result_label: "Din taggede URL:",
             result_placeholder: "Indtast URL øverst for at generere taggede URL",
             copy_button_title: "Kopier URL",
-            copy_message: "✓ Kopieret!",
+            copy_message: "Tagget link kopieret",
             info_text: "Indtast URL'en for at generere en taggede URL",
             explanation_title: "Forklaring af opslagstyper",
             explanation_editorial_title: "Redaktionelt opslag:",
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             result_label: "Din merket URL:",
             result_placeholder: "Skriv inn URL øverst for å generere merket URL",
             copy_button_title: "Kopier URL",
-            copy_message: "✓ Kopiert!",
+            copy_message: "Tagget lenke kopiert",
             info_text: "Skriv inn URL-en for å generere en merket URL",
             explanation_title: "Forklaring av innleggstyper",
             explanation_editorial_title: "Redaksjonelt innlegg:",
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
             result_label: "Din taggade URL:",
             result_placeholder: "Ange URL överst för att generera taggad URL",
             copy_button_title: "Kopiera URL",
-            copy_message: "✓ Kopierat!",
+            copy_message: "Taggad länk kopierad",
             info_text: "Ange URL:en för att generera en taggad URL",
             explanation_title: "Förklaring av inläggstyper",
             explanation_editorial_title: "Redaktionellt inlägg:",
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             result_label: "Ihre markierte URL:",
             result_placeholder: "Geben Sie oben die URL ein, um eine markierte URL zu generieren",
             copy_button_title: "URL kopieren",
-            copy_message: "✓ Kopiert!",
+            copy_message: "Getaggter Link kopiert",
             info_text: "Geben Sie die URL ein, um eine markierte URL zu generieren",
             explanation_title: "Erklärung der Beitragstypen",
             explanation_editorial_title: "Redaktioneller Beitrag:",
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
             result_label: "Your tagged URL:",
             result_placeholder: "Enter URL above to generate tagged URL",
             copy_button_title: "Copy URL",
-            copy_message: "✓ Copied!",
+            copy_message: "Tagged link copied",
             info_text: "Enter the URL to generate a tagged URL",
             explanation_title: "Explanation of post types",
             explanation_editorial_title: "Editorial post:",
@@ -242,7 +242,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('post-type-redaktionelt').checked = true;
         resultUrl.value = '';
         copyBtn.disabled = true;
+        copyBtn.classList.remove('success');
         copyMessage.classList.add('hidden');
+        // Restore original icon if it was changed
+        const svg = copyBtn.querySelector('svg');
+        if (svg) {
+            svg.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>';
+        }
+        const ariaLive = document.getElementById('copy-aria-live');
+        if (ariaLive) {
+            ariaLive.textContent = '';
+        }
         baseUrlInput.focus();
     });
     
@@ -255,20 +265,50 @@ document.addEventListener('DOMContentLoaded', function() {
         resultUrl.select();
         resultUrl.setSelectionRange(0, 99999); // For mobile devices
         
+        const currentLang = getCookie('selectedLanguage') || 'da';
+        const langData = translations[currentLang] || translations.da;
+        const successMessage = langData.copy_message || 'Tagged link copied';
+        
+        const handleCopySuccess = function() {
+            // Add success state to button
+            copyBtn.classList.add('success');
+            
+            // Change icon to checkmark
+            const svg = copyBtn.querySelector('svg');
+            if (svg) {
+                svg.innerHTML = '<path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+            }
+            
+            // Update and show toast message
+            copyMessage.textContent = successMessage;
+            copyMessage.classList.remove('hidden');
+            
+            // Announce to screen readers
+            const ariaLive = document.getElementById('copy-aria-live');
+            if (ariaLive) {
+                ariaLive.textContent = successMessage;
+            }
+            
+            // Reset after 1.8 seconds
+            setTimeout(function() {
+                copyBtn.classList.remove('success');
+                // Restore original icon
+                if (svg) {
+                    svg.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>';
+                }
+                copyMessage.classList.add('hidden');
+                if (ariaLive) {
+                    ariaLive.textContent = '';
+                }
+            }, 1800);
+        };
+        
         try {
-            navigator.clipboard.writeText(resultUrl.value).then(function() {
-                copyMessage.classList.remove('hidden');
-                setTimeout(function() {
-                    copyMessage.classList.add('hidden');
-                }, 2000);
-            });
+            navigator.clipboard.writeText(resultUrl.value).then(handleCopySuccess);
         } catch (err) {
             // Fallback for older browsers
             document.execCommand('copy');
-            copyMessage.classList.remove('hidden');
-            setTimeout(function() {
-                copyMessage.classList.add('hidden');
-            }, 2000);
+            handleCopySuccess();
         }
     });
     
